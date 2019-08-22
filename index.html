@@ -4,61 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Elevator Simulator</title>
+    <link rel="stylesheet" type="text/css" href="./src/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./src/css/style.css">
 </head>
-<style>
-    .vert {
-        height:500px;
-        position:absolute;
-        width:100px;
-        left:40px;
-        top: 40px;
-        border:1px solid gray;
-    }
-
-    .v1 {
-        left: 160px;
-    }
-    .v2 {
-        left: 280px;
-    }
-    .v3 {
-        left: 400px;
-    }
-    .v4 {
-        left: 520px;
-    }
-    .vert button {
-        width:80px;
-        height: 20px;
-        margin: 40px 0 40px 10px;
-    }
-
-    .vert button.disabled {
-        background-color:darkgray;
-    }
-
-    .elevator {
-        width:80px;
-        height:80px;
-        position:absolute;
-        top:0;
-        left:0;
-        border:10px solid black;
-        border-radius: 10px;
-        background-color: lightgrey;
-        text-align: center;
-    }
-
-    .elevator.moving {
-        background-color: dodgerblue;
-    }
-
-    .elevator.standby {
-        background-color: orangered;
-    }
-</style>
-
     <div class="wrap">
         <div class="vert" id="btnWrap">
             <!--<button type="button">1층</button>-->

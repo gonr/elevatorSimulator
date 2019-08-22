@@ -23,10 +23,14 @@ export default class Elevator {
         this.render();
     }
 
+    /**
+     * 엘리베이터를 1초 간격으로 머무르도록 시킨다.
+     */
     setStandBy() {
         setTimeout(() => {
-            this.stanbyRemain -= 1000;
-            if(this.stanbyRemain !== 0) {
+            this.stanbyRemain -= 1000; // 남은 머무는 시간을 빼준다.
+            
+            if(this.stanbyRemain !== 0) { // 머무는 시간이 완료되었을 경우
                 this.setStandBy();
             } else {
                 this.setElNormal();
@@ -45,12 +49,12 @@ export default class Elevator {
             return false;
         }
         
-        // 움직이고 있는 경우 같은 층으로 가야하면 무시, 버튼을 disable 상태로 유지 
+        // 움직이고 있는 경우 같은 층으로 가야하면 무시, true값을 리턴하여 버튼을 disable 상태로 유지 
         if(this.isMoving && this.curTargetFloor === targetFloor) {
             return true;
         }
 
-        // 마지막에 추가된 이동할층과 현재 추가해야할 층이 같을 경우 무시, 버튼을 disable 상태로 유지
+        // 마지막에 추가된 이동할층과 현재 추가해야할 층이 같을 경우 무시, true값을 리턴하여 버튼을 disable 상태로 유지
         if(this.targetFloorList.length > 0 && this.targetFloorList[this.targetFloorList.length - 1] === targetFloor) {
             return true;
         }
@@ -89,10 +93,10 @@ export default class Elevator {
         }
         this.setElMoving();
         this.stanbyRemain = this.STANDBY_TIME;
-        this.curTargetFloor = this.targetFloorList.shift();
+        this.curTargetFloor = this.targetFloorList.shift(); // 이동할 층수 리스트에서 하나를 꺼낸다.
 
-        this.moveTime = Math.abs(this.currentFloor - this.curTargetFloor) * 1000;
-        const newTop = (this.maxFloor - this.curTargetFloor) * this.ONE_FLOOR_Y_PIXEL;
+        this.moveTime = Math.abs(this.currentFloor - this.curTargetFloor) * 1000; // 이동하는데 걸리는 시간(ms)
+        const newTop = (this.maxFloor - this.curTargetFloor) * this.ONE_FLOOR_Y_PIXEL; // 이동할 top 값
         this.moveAnimation = this.el.animate(
             [
                 { transform: this.el.style.transform ? this.el.style.transform : "translate(0)" },
@@ -104,6 +108,10 @@ export default class Elevator {
         this.moveAnimation.onfinish = () => { this.onFinishMove(newTop); };
     }
 
+    /**
+     * 이동이 완료되었을 때 실행
+     * @param newTop
+     */
     onFinishMove(newTop: number) {
         this.currentFloor = this.curTargetFloor;
         this.el.style.transform = `translate(0, ${newTop}px)`;
@@ -112,6 +120,9 @@ export default class Elevator {
         this.sendFinishEvent();
     }
 
+    /**
+     * 이동완료 후 커스텀 이벤트 호출
+     */
     sendFinishEvent() {
         const finishEvent = new CustomEvent('evMoveFinished');
         this.el.dispatchEvent(finishEvent);
@@ -143,7 +154,7 @@ export default class Elevator {
             distance += Math.abs(this.currentFloor - floor) * this.ONE_FLOOR_MOVING_TIME; // 이동할 층까지 이동 시간을 더한다.
         }
 
-        // standby 시간 계산
+        // 머무르는 시간 계산
         if (this.isMoving && this.curTargetFloor !== floor) { // 이동중이고 이동하는 층이 다를 경우
             distance += this.stanbyRemain;
         } else if (!this.isMoving && this.currentFloor !== floor) {// 이동중이 아니고 현재 층이과 다를 경우
@@ -154,6 +165,7 @@ export default class Elevator {
 
     render() {
         const elevatorWrap = document.createElement('div');
+        // elevatorWrap.style.marginLeft = `${20 * (this.index + 1)}px`;
         elevatorWrap.className = `vert v${this.index + 1}`;
         elevatorWrap.innerHTML = `<div class="elevator" style="transform: translate(0, ${this.ONE_FLOOR_Y_PIXEL * (this.maxFloor - 1)}px);"></div>`;
         this.parent.insertAdjacentElement('beforeend', elevatorWrap);

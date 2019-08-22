@@ -1,0 +1,41 @@
+.wrap {
+    padding: 20px;
+}
+.vert {
+    height:100%;
+    position:relative;
+    width:100px;
+    border:1px solid gray;
+    float:left;
+    margin-left:20px;
+}
+
+.vert button {
+    width:80px;
+    height: 20px;
+    margin: 40px 0 40px 10px;
+}
+
+.vert button.disabled {
+    background-color:darkgray;
+}
+
+.elevator {
+    width:80px;
+    height:80px;
+    position:absolute;
+    top:0;
+    left:0;
+    border:10px solid black;
+    border-radius: 10px;
+    background-color: lightgrey;
+    text-align: center;
+}
+
+.elevator.moving {
+    background-color: dodgerblue;
+}
+
+.elevator.standby {
+    background-color: orangered;
+}
