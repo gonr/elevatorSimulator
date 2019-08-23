@@ -1,3 +1,3 @@
 import Main from './main';
 
-new Main();
+new Main(4, 5);
