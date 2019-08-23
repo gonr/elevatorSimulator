@@ -174,7 +174,7 @@ export default class Elevator {
 
     render() {
         const elevatorWrap = document.createElement('div');
-        elevatorWrap.className = `vert v${this.index + 1}`;
+        elevatorWrap.className = `vert`;
         elevatorWrap.innerHTML = `<div class="elevator" style="transform: translate(0, ${this.ONE_FLOOR_Y_PIXEL * (this.maxFloor - 1)}px);"></div>`;
         this.parent.insertAdjacentElement('beforeend', elevatorWrap);
         this.el = elevatorWrap.children[0] as HTMLDivElement;
