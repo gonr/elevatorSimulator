@@ -29,7 +29,7 @@ export default class Elevator {
     setStandBy() {
         setTimeout(() => {
             this.stanbyRemain -= 1000; // 남은 머무는 시간을 빼준다.
-            
+
             if(this.stanbyRemain !== 0) { // 머무는 시간이 완료되었을 경우
                 this.setStandBy();
             } else {
@@ -40,7 +40,7 @@ export default class Elevator {
     }
 
     /**
-     * 엘레베이터를 이동시킬경우 이동리스트에 저장한다. 
+     * 엘레베이터를 이동시킬경우 이동리스트에 저장한다.
      * @param targetFloor
      * @returns {boolean} 해당 층의 버튼을 disable 할껀지 정한다.
      */
@@ -48,8 +48,8 @@ export default class Elevator {
         if(!this.isMoving && this.currentFloor === targetFloor) { // 같은 층이면 무시
             return false;
         }
-        
-        // 움직이고 있는 경우 같은 층으로 가야하면 무시, true값을 리턴하여 버튼을 disable 상태로 유지 
+
+        // 움직이고 있는 경우 같은 층으로 가야하면 무시, true값을 리턴하여 버튼을 disable 상태로 유지
         if(this.isMoving && this.curTargetFloor === targetFloor) {
             return true;
         }
@@ -74,7 +74,7 @@ export default class Elevator {
         this.el.className = 'elevator standby';
         this.el.innerHTML = 'STANDBY';
     }
-    
+
     setElMoving() {
         this.isMoving = true;
         this.el.className = 'elevator moving';
@@ -165,7 +165,6 @@ export default class Elevator {
 
     render() {
         const elevatorWrap = document.createElement('div');
-        // elevatorWrap.style.marginLeft = `${20 * (this.index + 1)}px`;
         elevatorWrap.className = `vert v${this.index + 1}`;
         elevatorWrap.innerHTML = `<div class="elevator" style="transform: translate(0, ${this.ONE_FLOOR_Y_PIXEL * (this.maxFloor - 1)}px);"></div>`;
         this.parent.insertAdjacentElement('beforeend', elevatorWrap);
@@ -175,7 +174,7 @@ export default class Elevator {
     getElement() {
         return this.el;
     }
-    
+
     getCurrentFloor() {
         return this.currentFloor;
     }
