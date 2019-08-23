@@ -7,15 +7,24 @@ module.exports = {
         path: path.resolve(__dirname, './build'),
     },
     module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                loader: 'ts-loader',
-                exclude: /node_modules/
-            },
-        ]
+        rules: [{
+            test: /\.(js|ts)$/,
+            exclude: /(node_modules)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: [
+                        '@babel/preset-env',
+                        '@babel/preset-typescript'
+                    ],
+                    plugins: [
+                        '@babel/proposal-class-properties'
+                    ]
+                }
+            }
+        }]
     },
     resolve: {
-        extensions: [".tsx", ".ts", ".js"]
+        extensions: [".ts", ".js"]
     },
 };
