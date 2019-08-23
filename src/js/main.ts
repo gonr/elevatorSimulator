@@ -18,19 +18,19 @@ export default class Main {
         this.init();
         this.setEvent();
     }
-    
+
     cacheElement() {
         this.btnWrap = document.querySelector('#btnWrap');
         this.wrap = document.querySelector('.wrap');
     }
 
     setEvent() {
-        this.btnWrap.onclick = e => {this.onClickBtn(e);};
-        document.querySelectorAll('.elevator').forEach((el) => {
-            el.addEventListener('evMoveFinished', (e) => {this.onEvMoveFinished(e);});
+        this.btnWrap.onclick = (e : MouseEvent) => {this.onClickBtn(e);};
+        document.querySelectorAll('.elevator').forEach((el: HTMLDivElement) => {
+            el.addEventListener('evMoveFinished', (e: MouseEvent) => {this.onEvMoveFinished(e);});
         })
     }
-    
+
     init() {
         // 버튼 생성
         for(let i=0; i< this.MAX_FLOOR_COUNT; i++) {
@@ -51,13 +51,13 @@ export default class Main {
      * 엘레베이터가 정지했을 때 이벤트 핸들러
      * @param e
      */
-    onEvMoveFinished(e) {
+    onEvMoveFinished(e : MouseEvent) {
         const ev = this.wm.get(e.target);
         this.buttonList[ev.getCurrentFloor() - 1].enable();
     }
 
-    onClickBtn(e) {
-        if(e.target.tagName !== 'BUTTON') {
+    onClickBtn(e: MouseEvent) {
+        if((e.target as HTMLButtonElement).tagName !== 'BUTTON') {
             return;
         }
         const btn = this.wm.get(e.target);

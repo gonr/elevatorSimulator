@@ -12,8 +12,8 @@ export default class Elevator {
     isMoving: boolean = false; // 이동중인가?
     stanbyRemain: number = 0; // 남은 머무르는 시간(ms)
     maxFloor: number; // 최대 층수
-    parent: HTMLElement; // 부모 엘리먼트
-    el: HTMLElement; // 자기 자신 엘리먼트
+    parent: HTMLDivElement; // 부모 엘리먼트
+    el: HTMLDivElement; // 자기 자신 엘리먼트
     moveAnimation: any; // animation 객체
 
     constructor(parent, index, maxFloor) {
@@ -69,18 +69,27 @@ export default class Elevator {
         return true;
     }
 
+    /**
+    * 머무는 상태로 만든다.
+    */
     setElStandBy() {
         this.isMoving = false;
         this.el.className = 'elevator standby';
         this.el.innerHTML = 'STANDBY';
     }
 
+    /**
+    * 이동중 상태로 만든다.
+    */
     setElMoving() {
         this.isMoving = true;
         this.el.className = 'elevator moving';
         this.el.innerHTML = 'MOVING';
     }
 
+    /**
+    * 사용가능한 상태로 만든다.
+    */
     setElNormal() {
         this.isMoving = false;
         this.el.className = 'elevator';
@@ -168,7 +177,7 @@ export default class Elevator {
         elevatorWrap.className = `vert v${this.index + 1}`;
         elevatorWrap.innerHTML = `<div class="elevator" style="transform: translate(0, ${this.ONE_FLOOR_Y_PIXEL * (this.maxFloor - 1)}px);"></div>`;
         this.parent.insertAdjacentElement('beforeend', elevatorWrap);
-        this.el = elevatorWrap.children[0] as HTMLElement;
+        this.el = elevatorWrap.children[0] as HTMLDivElement;
     }
 
     getElement() {
