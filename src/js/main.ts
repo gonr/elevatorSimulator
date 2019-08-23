@@ -16,8 +16,7 @@ export default class Main {
         this.floorCount = floorCount;
         
         this.cacheElement();
-        this.wrap.style.height = `${this.floorCount * 100}px`;
-        this.wrap.style.width = `${240 + this.evCount * 120}px`;
+        this.setWrapElementSize();
         this.init();
         this.setEvent();
     }
@@ -50,6 +49,14 @@ export default class Main {
         }
     }
 
+    setWrapElementSize() {
+        const FLOOR_HEIGHT = 100;
+        const EV_GAP_DEFAULT = 240;
+        const EV_GAP = 120;
+        this.wrap.style.height = `${this.floorCount * FLOOR_HEIGHT}px`;
+        this.wrap.style.width = `${EV_GAP_DEFAULT + this.evCount * EV_GAP}px`;
+    }
+    
     /**
      * 엘레베이터가 정지했을 때 이벤트 핸들러
      * @param e

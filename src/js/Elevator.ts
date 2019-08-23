@@ -104,7 +104,7 @@ export default class Elevator {
         this.stanbyRemain = this.STANDBY_TIME;
         this.curTargetFloor = this.targetFloorList.shift(); // 이동할 층수 리스트에서 하나를 꺼낸다.
 
-        this.moveTime = Math.abs(this.currentFloor - this.curTargetFloor) * 1000; // 이동하는데 걸리는 시간(ms)
+        this.moveTime = Math.abs(this.currentFloor - this.curTargetFloor) * this.ONE_FLOOR_MOVING_TIME; // 이동하는데 걸리는 시간(ms)
         const newTop = (this.maxFloor - this.curTargetFloor) * this.ONE_FLOOR_Y_PIXEL; // 이동할 top 값
         this.moveAnimation = this.el.animate(
             [
