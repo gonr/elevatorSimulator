@@ -48,6 +48,9 @@ export default class Main {
         }
     }
 
+    /**
+     * 전체를 감싸는 엘리먼트 사이즈 설정
+     */
     setWrapElementSize() {
         const FLOOR_HEIGHT = 100;
         const EV_GAP_DEFAULT = 240;
@@ -77,6 +80,10 @@ export default class Main {
         this.runButton(btn);
     }
 
+    /**
+     * 해당 버튼 활성화
+     * @param btn
+     */
     runButton(btn: Button) {
         btn.disable();
         const isMovalble = this.callElevator(btn.getFloor());
@@ -87,11 +94,20 @@ export default class Main {
         }
     }
 
+    /**
+     * 층수에 버튼을 활성화 시킨다
+     * @param floor
+     */
     activateFloor(floor: number) {
         const btn = this.wm.get(document.querySelectorAll('.vert button')[this.param.floorCount - floor]) as Button;
         this.runButton(btn);
     }
 
+    /**
+     * 해당 층수가 활성화 되었는지 확인한다.
+     * @param floor
+     * @returns {boolean} 활성화 여부
+     */
     isActivatedFloor(floor: number) {
         const btn = this.wm.get(document.querySelectorAll('.vert button')[this.param.floorCount - floor]) as Button;
         return btn.isActivated();
