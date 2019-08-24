@@ -61,6 +61,7 @@ export default class Elevator {
 
         this.targetFloorList.push(targetFloor); // 이동할 층수 추가
 
+        // 이동중 이거나 대기중일 경우 startMove를 하지 않도록 한다.
         if(this.isMoving || this.stanbyRemain !== 0) {
             return true;
         }
@@ -96,6 +97,9 @@ export default class Elevator {
         this.el.innerHTML = '';
     }
 
+    /**
+     * 엘베 이동시키는 에니메이션을 생성한다.
+     */
     startMove() {
         if (this.targetFloorList.length === 0) {
             return;
