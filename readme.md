@@ -14,6 +14,13 @@ npm install
 npm test
 ```
 
+# 모듈 구조
+- `app.ts` entry point이고 외부 접근 가능한 전역변수를 셋팅한다.
+- `/component/Main.ts` 버튼과 엘레베이터 instance 생성 및 event binding을 한다
+- `/component/Button.ts` 각 층의 버튼 클래스로 버튼 활성화 비활성화를 담당한다.
+- `/component/Elevator.ts` 엘레베이터 클래스로 이동 에니메이션 구현과 해당 층 이동시 이동시간을 계산한다
+
+
 # 특이사항
 - 엘레베이터, 층수 셋팅은 /src/js/app.ts에서 설정할수 있습니다
 ```javascript
