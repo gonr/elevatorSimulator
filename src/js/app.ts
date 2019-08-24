@@ -18,4 +18,4 @@ class App {
     }
 }
 
-new App({ elevatorCount: 4, floorCount: 5});
+new App({ elevatorCount: 10, floorCount: 20});
