@@ -27,6 +27,10 @@ export default class Button {
         this.el.className = '';
         this.el.disabled = false;
     }
+
+    isActivated() {
+        return this.el.disabled === true;
+    }
     
     getElement() {
         return this.el;

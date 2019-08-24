@@ -1,14 +1,21 @@
 import Main from './component/Main';
 
-interface ImainClass {
-    new (): Main;
-}
-
 class App {
-    oMain: ImainClass;
-    constructor() {
-        this.oMain = new Main({ elevatorCount: 4, floorCount: 5}) as ImainClass;
+    oMain: Main;
+    constructor(param: IinitialValue) {
+        this.oMain = new Main(param) as Main;
+        this.setWindowFunc();
+    }
+
+    setWindowFunc() {
+        window.activateFloor = (floor: number) => {
+            this.oMain.activateFloor(floor);
+        };
+
+        window.isActivatedFloor = (floor: number) => {
+            return this.oMain.isActivatedFloor(floor);
+        };
     }
 }
 
-new App();
+new App({ elevatorCount: 4, floorCount: 5});

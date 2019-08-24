@@ -73,7 +73,11 @@ export default class Main {
         if((e.target as HTMLButtonElement).tagName !== 'BUTTON') {
             return;
         }
-        const btn = this.wm.get(e.target);
+        const btn = this.wm.get(e.target) as Button;
+        this.runButton(btn);
+    }
+
+    runButton(btn: Button) {
         btn.disable();
         const isMovalble = this.callElevator(btn.getFloor());
 
@@ -81,6 +85,16 @@ export default class Main {
         if (!isMovalble) {
             btn.enable();
         }
+    }
+
+    activateFloor(floor: number) {
+        const btn = this.wm.get(document.querySelectorAll('.vert button')[this.param.floorCount - floor]) as Button;
+        this.runButton(btn);
+    }
+
+    isActivatedFloor(floor: number) {
+        const btn = this.wm.get(document.querySelectorAll('.vert button')[this.param.floorCount - floor]) as Button;
+        return btn.isActivated();
     }
 
     /**
