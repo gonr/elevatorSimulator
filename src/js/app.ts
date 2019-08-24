@@ -1,3 +1,14 @@
-import Main from './component/main';
+import Main from './component/Main';
 
-new Main({ elevatorCount: 4, floorCount: 5});
+interface ImainClass {
+    new (): Main;
+}
+
+class App {
+    oMain: ImainClass;
+    constructor() {
+        this.oMain = new Main({ elevatorCount: 4, floorCount: 5}) as ImainClass;
+    }
+}
+
+new App();

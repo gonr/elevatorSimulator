@@ -1,8 +1,8 @@
 import Button from '../src/js/component/Button';
 import Elevator from '../src/js/component/Elevator';
-import Main from '../src/js/component/main';
-jest.mock('../src/js/Button', () => jest.fn());
-jest.mock('../src/js/Elevator', () => jest.fn());
+import Main from '../src/js/component/Main';
+jest.mock('../src/js/component/Button', () => jest.fn());
+jest.mock('../src/js/component/Elevator', () => jest.fn());
 
 Button.mockImplementation(() => ({
     getElement: () => {
@@ -27,7 +27,7 @@ describe('Main Class Test', () => {
             <div id="btnWrap"><button id="testBtn"></button></div>
             <div class="elevator"></div>
         </div>`;
-    const testMain = new Main(4, 5);
+    const testMain = new Main({ elevatorCount: 4, floorCount: 5});
 
     test('초기값 확인', () => {
         expect(testMain.evCount).toEqual(4);

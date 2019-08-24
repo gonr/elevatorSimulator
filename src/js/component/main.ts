@@ -12,7 +12,7 @@ export default class Main {
     wrap: HTMLElement;
     wm = new WeakMap();
 
-    constructor(param) {
+    constructor(param: IinitialValue) {
         this.param = param;
         this.cacheElement();
         this.setWrapElementSize();
