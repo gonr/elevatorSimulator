@@ -1,3 +1,3 @@
-import Main from './main';
+import Main from './component/main';
 
-new Main(4, 5);
+new Main({ elevatorCount: 4, floorCount: 5});

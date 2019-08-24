@@ -4,6 +4,7 @@ import Button from './Button';
 export default class Main {
     floorCount: number = 5; // 층 수
     evCount: number = 4; // 엘레베이터 수
+    param: IinitialValue = {elevatorCount: 4, floorCount: 5};
 
     elevatorList: any[] = [];
     buttonList: any[] = [];
@@ -11,10 +12,8 @@ export default class Main {
     wrap: HTMLElement;
     wm = new WeakMap();
 
-    constructor(evCount: number, floorCount: number) {
-        this.evCount = evCount;
-        this.floorCount = floorCount;
-        
+    constructor(param) {
+        this.param = param;
         this.cacheElement();
         this.setWrapElementSize();
         this.init();
@@ -35,15 +34,15 @@ export default class Main {
 
     init() {
         // 버튼 생성
-        for(let i=0; i< this.floorCount; i++) {
-            const btn = new Button(this.btnWrap, i, this.floorCount);
+        for(let i=0; i< this.param.floorCount; i++) {
+            const btn = new Button(this.btnWrap, i, this.param.floorCount);
             this.wm.set(btn.getElement(), btn); // WeakMap으로 버튼 element에 버튼 Object를 맵핑한다
             this.buttonList.push(btn);
         }
 
         // 엘레베이터  생성
-        for(let i=0; i< this.evCount; i++) {
-            const ev = new Elevator(this.wrap, i, this.floorCount);
+        for(let i=0; i< this.param.elevatorCount; i++) {
+            const ev = new Elevator(this.wrap, i, this.param.floorCount);
             this.wm.set(ev.getElement(), ev); // WeakMap으로 엘레베이터 element에 엘레베이터 Object를 맵핑한다
             this.elevatorList.push(ev);
         }
@@ -53,8 +52,8 @@ export default class Main {
         const FLOOR_HEIGHT = 100;
         const EV_GAP_DEFAULT = 240;
         const EV_GAP = 120;
-        this.wrap.style.height = `${this.floorCount * FLOOR_HEIGHT}px`;
-        this.wrap.style.width = `${EV_GAP_DEFAULT + this.evCount * EV_GAP}px`;
+        this.wrap.style.height = `${this.param.floorCount * FLOOR_HEIGHT}px`;
+        this.wrap.style.width = `${EV_GAP_DEFAULT + this.param.elevatorCount * EV_GAP}px`;
     }
     
     /**
