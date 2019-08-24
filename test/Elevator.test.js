@@ -1,12 +1,12 @@
-import Button from '../src/js/component/Button';
+import Elevator from '../src/js/component/Elevator';
 
-describe('Button Class Test', () => {
+describe('Elevator Class Test', () => {
     // Mock Element
     document.body.innerHTML = `<div class="wrap">
             <div id="btnWrap"></div>
             <div class="elevator"></div>
         </div>`;
-    const testButton = new Button(document.getElementById('btnWrap'), 5, 10);
+    const testEv = new Elevator(document.getElementById('btnWrap'), 5, 10);
 
     test('초기값 확인', () => {
         expect(testButton.index).toEqual(5);
