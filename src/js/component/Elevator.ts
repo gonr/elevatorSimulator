@@ -23,7 +23,7 @@ export default class Elevator {
         this.render();
     }
 
-    /**
+    /*
      * 엘리베이터를 1초 간격으로 머무르도록 시킨다.
      */
     setStandBy() {

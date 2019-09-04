@@ -1,7 +1,7 @@
 export default class Button {
     index: number; // 버튼 인덱스
     maxFloor: number; // 최대 층수
-    parent: HTMLElement; // 부모 엘리먼트
+    parent: HTMLDivElement; // 부모 엘리먼트
     el: HTMLButtonElement; // 자기 자신 엘리먼트
 
     constructor(parent, index, maxFloor) {
